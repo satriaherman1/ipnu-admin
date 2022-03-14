@@ -211,7 +211,7 @@ const Member: NextPage = () => {
   const memberRestService: MemberRestService = new MemberRestService();
   const [members, setMembers] = useState<Data[]>([] as Data[]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [deleteId, setDeleteId] = useState<string>("");
+  const [deleteId, setDeleteId] = useState<any>();
 
   const [openConfirmDelete, setOpenConfirmDelete] = useState<boolean>(false);
   function EnhancedTable() {
