@@ -209,7 +209,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 
 const Member: NextPage = () => {
   const memberRestService: MemberRestService = new MemberRestService();
-  const [members, setMembers] = useState<Data[]>();
+  const [members, setMembers] = useState<Data[]>([] as Data[]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [deleteId, setDeleteId] = useState<string>("");
 
@@ -217,7 +217,7 @@ const Member: NextPage = () => {
   function EnhancedTable() {
     const [order, setOrder] = React.useState<Order>("asc");
     const [orderBy, setOrderBy] = React.useState<keyof Data>("name");
-    const [selected, setSelected] = React.useState<readonly string[]>([]);
+    const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
