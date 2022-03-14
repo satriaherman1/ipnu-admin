@@ -100,8 +100,8 @@ export default function Navigation() {
       <div>
         {(["left"] as const).map((anchor) => (
           <React.Fragment key={anchor}>
-            <Box sx={{ flexGrow: 1 }}>
-              <AppBar position="fixed" className="bg-[#01734d]">
+            <Box sx={{ flexGrow: 1 }} className="bg-[#01734d]">
+              <AppBar position="fixed">
                 <Toolbar>
                   <IconButton onClick={toggleDrawer(anchor, true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
                     <MenuIcon />

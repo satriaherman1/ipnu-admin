@@ -70,24 +70,26 @@ const NewMember: NextPage = () => {
               }}
               value={dataMember.name}
             />
-            <FormControl className="lg:min-w-[500px] mt-[20px] md:mt-0">
-              <InputLabel id="demo-simple-select-label">Tipe Anggota</InputLabel>
-              <Select
-                variant="outlined"
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="Tipe Anggota"
-                onChange={(e) => {
-                  const member = dataMember;
-                  member.type = e.target.value;
-                  setDataMember(dataMember);
-                }}
-                value={dataMember.type}
-              >
-                <MenuItem value="ipnu">IPNU</MenuItem>
-                <MenuItem value="ippnu">IPPNU</MenuItem>
-              </Select>
-            </FormControl>
+            <div className=" mt-[20px]">
+              <FormControl className="lg:min-w-[500px] md:mt-0">
+                <InputLabel id="demo-simple-select-label">Tipe Anggota</InputLabel>
+                <Select
+                  variant="outlined"
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Tipe Anggota"
+                  onChange={(e) => {
+                    const member = dataMember;
+                    member.type = e.target.value;
+                    setDataMember(dataMember);
+                  }}
+                  value={dataMember.type}
+                >
+                  <MenuItem value="ipnu">IPNU</MenuItem>
+                  <MenuItem value="ippnu">IPPNU</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
           </div>
           <div className="flex flex-col md:flex-row justify-between mt-[30px]">
             <TextField
@@ -103,27 +105,29 @@ const NewMember: NextPage = () => {
               }}
               value={dataMember.age}
             />
-            <FormControl className="lg:min-w-[500px] mt-[20px] md:mt-0">
-              <InputLabel id="demo-simple-select-label">Status</InputLabel>
-              <Select
-                variant="outlined"
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                onChange={(e) => {
-                  const member = dataMember;
-                  member.status = e.target.value;
-                  setDataMember(dataMember);
-                }}
-                value={dataMember.status}
-                label="Status"
-              >
-                <MenuItem value="ketua">Ketua</MenuItem>
-                <MenuItem value="wakil ketua">Wakil Ketua</MenuItem>
-                <MenuItem value="sekretaris">Sektretaris</MenuItem>
-                <MenuItem value="bendahara">Bendahara</MenuItem>
-                <MenuItem value="anggota">Anggota</MenuItem>
-              </Select>
-            </FormControl>
+            <div className="mt-[20px]">
+              <FormControl className="lg:min-w-[500px] mt-[20px] md:mt-0">
+                <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                <Select
+                  variant="outlined"
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  onChange={(e) => {
+                    const member = dataMember;
+                    member.status = e.target.value;
+                    setDataMember(dataMember);
+                  }}
+                  value={dataMember.status}
+                  label="Status"
+                >
+                  <MenuItem value="ketua">Ketua</MenuItem>
+                  <MenuItem value="wakil ketua">Wakil Ketua</MenuItem>
+                  <MenuItem value="sekretaris">Sektretaris</MenuItem>
+                  <MenuItem value="bendahara">Bendahara</MenuItem>
+                  <MenuItem value="anggota">Anggota</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
           </div>
 
           <div className="flex flex-col md:flex-row mt-[30px]">
