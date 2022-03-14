@@ -33,6 +33,7 @@ interface Data {
   status: string;
   address: string;
   action?: any;
+  _id: string;
 }
 
 // function createData(name: string, age: number, status: string, address: string): Data {
@@ -65,7 +66,6 @@ function getComparator<Key extends keyof any>(order: Order, orderBy: Key): (a: {
 // This method is created for cross-browser compatibility, if you don't
 // need to support IE11, you can use Array.prototype.sort() directly
 function stableSort<T>(array: readonly any[], comparator: (a: T, b: T) => number) {
-  console.log(array);
   const stabilizedThis = array?.map((el, index) => [el, index] as [T, number]);
   stabilizedThis?.sort((a, b) => {
     const order = comparator(a[0], b[0]);
@@ -217,7 +217,7 @@ const Member: NextPage = () => {
   function EnhancedTable() {
     const [order, setOrder] = React.useState<Order>("asc");
     const [orderBy, setOrderBy] = React.useState<keyof Data>("name");
-    const [selected, setSelected] = React.useState([]);
+    const [selected, setSelected] = React.useState<string[]>([]);
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -230,8 +230,8 @@ const Member: NextPage = () => {
 
     const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
       if (event.target.checked) {
-        const newSelecteds = members?.map((n) => n.name);
-        setSelected(newSelecteds);
+        const newSelecteds: any[] = members?.map((n) => n.name);
+        setSelected([...newSelecteds]);
         return;
       }
       setSelected([]);
@@ -239,7 +239,7 @@ const Member: NextPage = () => {
 
     const handleClick = (event: React.MouseEvent<unknown>, name: any) => {
       const selectedIndex = selected.indexOf(name);
-      let newSelected: readonly string[] = [];
+      let newSelected: string[] = [];
 
       if (selectedIndex === -1) {
         newSelected = newSelected.concat(selected, name);
