@@ -92,42 +92,43 @@ const NewMember: NextPage = () => {
             </div>
           </div>
           <div className="flex flex-col md:flex-row justify-between mt-[30px]">
-            <TextField
-              label="Umur"
-              type="number"
-              variant="outlined"
-              className="lg:min-w-[500px]"
-              onChange={(e: any) => {
-                const member = dataMember;
-                const ageValue = e.target.value;
-                member.age = ageValue;
-                setDataMember(dataMember);
-              }}
-              value={dataMember.age}
-            />
             <div className="mt-[20px]">
-              <FormControl className="lg:min-w-[500px] mt-[20px] md:mt-0">
-                <InputLabel id="demo-simple-select-label">Status</InputLabel>
-                <Select
-                  variant="outlined"
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  onChange={(e) => {
-                    const member = dataMember;
-                    member.status = e.target.value;
-                    setDataMember(dataMember);
-                  }}
-                  value={dataMember.status}
-                  label="Status"
-                >
-                  <MenuItem value="ketua">Ketua</MenuItem>
-                  <MenuItem value="wakil ketua">Wakil Ketua</MenuItem>
-                  <MenuItem value="sekretaris">Sektretaris</MenuItem>
-                  <MenuItem value="bendahara">Bendahara</MenuItem>
-                  <MenuItem value="anggota">Anggota</MenuItem>
-                </Select>
-              </FormControl>
+              <TextField
+                label="Umur"
+                type="number"
+                variant="outlined"
+                className="lg:min-w-[500px]"
+                onChange={(e: any) => {
+                  const member = dataMember;
+                  const ageValue = e.target.value;
+                  member.age = ageValue;
+                  setDataMember(dataMember);
+                }}
+                value={dataMember.age}
+              />
             </div>
+
+            <FormControl className="lg:min-w-[500px] mt-[20px] md:mt-0">
+              <InputLabel id="demo-simple-select-label">Status</InputLabel>
+              <Select
+                variant="outlined"
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                onChange={(e) => {
+                  const member = dataMember;
+                  member.status = e.target.value;
+                  setDataMember(dataMember);
+                }}
+                value={dataMember.status}
+                label="Status"
+              >
+                <MenuItem value="ketua">Ketua</MenuItem>
+                <MenuItem value="wakil ketua">Wakil Ketua</MenuItem>
+                <MenuItem value="sekretaris">Sektretaris</MenuItem>
+                <MenuItem value="bendahara">Bendahara</MenuItem>
+                <MenuItem value="anggota">Anggota</MenuItem>
+              </Select>
+            </FormControl>
           </div>
 
           <div className="flex flex-col md:flex-row mt-[30px]">
