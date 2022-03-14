@@ -1,0 +1,8 @@
+.sidebar .active {
+  background-color: white;
+  border-radius: 8px;
+}
+
+.sidebar .active span {
+  color: #333;
+}
