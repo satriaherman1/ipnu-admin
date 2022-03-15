@@ -58,7 +58,6 @@ export default function Navigation() {
               <ListItemText primary="Dashboard" />
             </ListItem>
           </Link>
-          {/* <p className="text-[600] text-[#5e6361] ml-[15px] mt-[10px] mb-[10px]">User Management</p> */}
 
           <Link href="/member">
             <ListItem button>
@@ -100,8 +99,8 @@ export default function Navigation() {
       <div>
         {(["left"] as const).map((anchor) => (
           <React.Fragment key={anchor}>
-            <Box sx={{ flexGrow: 1 }} className="bg-[#01734d]">
-              <AppBar position="fixed">
+            <Box sx={{ flexGrow: 1 }}>
+              <AppBar position="fixed" className="bg-[#01734d]">
                 <Toolbar>
                   <IconButton onClick={toggleDrawer(anchor, true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
                     <MenuIcon />

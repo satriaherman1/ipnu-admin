@@ -23,4 +23,13 @@ export class MemberRestService {
       console.log(err);
     }
   }
+  async getMemberByKey(params: any) {
+    try {
+      return await axios.get(`${baseUrl}/members/key`, {
+        params: params,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }

@@ -14,25 +14,6 @@ const Home: NextPage = () => {
     <div className="flex">
       <Navigation />
       <MainContent>
-        <div className="flex justify-between w-full items-center">
-          <PageBreadCrumbs previousPage={["Dashboard"]} currentPage="Core" />
-          <div className="flex  items-center">
-            {/* <Box sx={{ display: "flex", alignItems: "flex-end" }} className="hidden lg:flex">
-              <Search sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-              <TextField id="input-with-sx" label="Cari Sesuatu?" variant="standard" />
-            </Box> */}
-
-            <IconButton className="ml-[10px] ">
-              <Notifications />
-            </IconButton>
-            <IconButton className="ml-[10px] ">
-              <Search />
-            </IconButton>
-            <IconButton className="ml-[10px] ">
-              <AccountCircle />
-            </IconButton>
-          </div>
-        </div>
         <br />
         <div className="flex flex-wrap justify-between w-[100%]">
           <SimpleCard icon={<Group fontSize="large" className="text-white" />} headerTitle="Total IPNU" content="30 Rekan" bgIcon="#0a688a" />

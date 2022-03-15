@@ -70,34 +70,33 @@ const NewMember: NextPage = () => {
               }}
               value={dataMember.name}
             />
-            <div className=" mt-[20px]">
-              <FormControl className="lg:min-w-[500px] md:mt-0">
-                <InputLabel id="demo-simple-select-label">Tipe Anggota</InputLabel>
-                <Select
-                  variant="outlined"
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="Tipe Anggota"
-                  onChange={(e) => {
-                    const member = dataMember;
-                    member.type = e.target.value;
-                    setDataMember(dataMember);
-                  }}
-                  value={dataMember.type}
-                >
-                  <MenuItem value="ipnu">IPNU</MenuItem>
-                  <MenuItem value="ippnu">IPPNU</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
+
+            <FormControl className="lg:min-w-[500px] md:mt-0 mt-[20px]">
+              <InputLabel id="demo-simple-select-label">Tipe Anggota</InputLabel>
+              <Select
+                variant="outlined"
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="Tipe Anggota"
+                onChange={(e) => {
+                  const member = dataMember;
+                  member.type = e.target.value;
+                  setDataMember(dataMember);
+                }}
+                value={dataMember.type}
+              >
+                <MenuItem value="ipnu">IPNU</MenuItem>
+                <MenuItem value="ippnu">IPPNU</MenuItem>
+              </Select>
+            </FormControl>
           </div>
-          <div className="flex flex-col md:flex-row justify-between mt-[30px]">
-            <div className="mt-[20px]">
+          <div className="flex flex-col md:flex-row justify-between ">
+            <div className="mt-[20px] w-[100%]">
               <TextField
                 label="Umur"
                 type="number"
                 variant="outlined"
-                className="lg:min-w-[500px]"
+                className="lg:min-w-[500px] w-[100%]"
                 onChange={(e: any) => {
                   const member = dataMember;
                   const ageValue = e.target.value;
