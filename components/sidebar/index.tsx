@@ -28,10 +28,10 @@ export default function Sidebar(props: ISidebarProps) {
       })}
     >
       <Box className="w-[310px] sidebar h-[100vh] py-[20px] bg-[#01734d] px-[20px]">
-        {/* <h2 className="text-[30px] text-white">Dashboard</h2> */}
-        <div>
+        <h2 className="text-[30px] text-white">Dashboard</h2>
+        {/* <div>
           <Image src={Logo} />
-        </div>
+        </div> */}
         <Divider className="h-[2px] border-top-2" />
         <br />
         {/* <br />
@@ -78,12 +78,14 @@ export default function Sidebar(props: ISidebarProps) {
               <ListItemText primary="Berita Terkini" className="text-white" />
             </ListItemButton>
           </Link>
-          <ListItemButton className={`${active === "activity" && "active"} my-[5px]`}>
-            <ListItemIcon className={`${active === "activity" && "text-[#333]"}`}>
-              <InsertPhoto />
-            </ListItemIcon>
-            <ListItemText primary="Artikel" className="text-white" />
-          </ListItemButton>
+          <Link href="/post/article">
+            <ListItemButton className={`${active === "activity" && "active"} my-[5px]`}>
+              <ListItemIcon className={`${active === "activity" && "text-[#333]"}`}>
+                <InsertPhoto />
+              </ListItemIcon>
+              <ListItemText primary="Artikel" className="text-white" />
+            </ListItemButton>
+          </Link>
         </List>
       </Box>
     </ThemeProvider>

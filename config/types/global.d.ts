@@ -15,6 +15,13 @@ declare interface Data {
   _id: string;
 }
 
+declare interface IArticleData {
+  title: string;
+  content: string;
+  imageUrl: string;
+  author: string;
+}
+
 declare interface ILocalData {
   store: any;
   dispatch: any;

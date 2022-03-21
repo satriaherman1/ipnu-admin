@@ -14,7 +14,8 @@ import useLocalData from "../../core/hooks/useLocalData";
 
 const Member: NextPage = () => {
   const memberRestService: MemberRestService = new MemberRestService();
-  const [members, setMembers] = useState<Data[]>([] as Data[]);
+  const [membersIpnu, setMembersIpnu] = useState<Data[]>([] as Data[]);
+  const [membersIppnu, setMembersIppnu] = useState<Data[]>([] as Data[]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [deleteId, setDeleteId] = useState<any>();
   const { dispatch } = useLocalData();
@@ -23,11 +24,16 @@ const Member: NextPage = () => {
 
   const getAllMembers = async () => {
     setIsLoading(true);
-    const key = {
+    const keyIpnu = {
       type: "ipnu",
     };
-    const data = await memberRestService.getMemberByKey(key);
-    setMembers(data?.data.data);
+    const keyIppnu = {
+      type: "ippnu",
+    };
+    const dataIpnu = await memberRestService.getMemberByKey(keyIpnu);
+    const dataIppnu = await memberRestService.getMemberByKey(keyIppnu);
+    setMembersIpnu(dataIpnu?.data.data);
+    setMembersIppnu(dataIppnu?.data.data);
     setIsLoading(false);
   };
 
@@ -54,14 +60,14 @@ const Member: NextPage = () => {
     <div className="flex">
       <Navigation />
       <MainContent>
-        <div style={{ height: 600, width: "100%" }}>
-          {isLoading ? (
-            <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading}>
-              <CircularProgress color="inherit" />
-            </Backdrop>
-          ) : (
-            <>
-              <MemberListComponent setOpenConfirmDelete={(confirm) => setOpenConfirmDelete(confirm)} members={members} setDeleteId={(id) => setDeleteId(id)} />
+        {isLoading ? (
+          <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading}>
+            <CircularProgress color="inherit" />
+          </Backdrop>
+        ) : (
+          <>
+            <div style={{ height: 600, width: "100%" }}>
+              <MemberListComponent setOpenConfirmDelete={(confirm) => setOpenConfirmDelete(confirm)} members={membersIpnu} setDeleteId={(id) => setDeleteId(id)} />
               <Link href="/member/new" passHref>
                 <Box sx={{ bgcolor: "success.main" }} className="rounded w-[fit-content]">
                   <Button variant="contained" className="rounded " color="success">
@@ -69,9 +75,20 @@ const Member: NextPage = () => {
                   </Button>
                 </Box>
               </Link>
-            </>
-          )}
-        </div>
+            </div>
+            <br />
+            <br />
+            <MemberListComponent setOpenConfirmDelete={(confirm) => setOpenConfirmDelete(confirm)} members={membersIppnu} setDeleteId={(id) => setDeleteId(id)} />
+            <Link href="/member/new" passHref>
+              <Box sx={{ bgcolor: "success.main" }} className="rounded w-[fit-content]">
+                <Button variant="contained" className="rounded " color="success">
+                  <Add /> Tambah Anggota
+                </Button>
+              </Box>
+            </Link>
+          </>
+        )}
+
         <ConfirmDeleteComponent action={deleteMemberById} open={openConfirmDelete} onClose={() => setOpenConfirmDelete(false)} />
       </MainContent>
     </div>

@@ -39,21 +39,6 @@ const NewMember: NextPage = () => {
     <div className="flex">
       <Navigation />
       <MainContent>
-        <div className="flex justify-between w-full items-center">
-          <PageBreadCrumbs previousPage={["Dashboard", "Member"]} currentPage="Tambah Anggota" />
-          <div className=" hidden md:flex items-center">
-            <IconButton className="ml-[10px] ">
-              <Notifications />
-            </IconButton>
-            <IconButton className="ml-[10px] ">
-              <Search />
-            </IconButton>
-            <IconButton className="ml-[10px] ">
-              <AccountCircle />
-            </IconButton>
-          </div>
-        </div>
-
         <br />
         <h1 className="text-[30px]">Tambah Anggota Baru</h1>
 
@@ -96,7 +81,7 @@ const NewMember: NextPage = () => {
                 label="Umur"
                 type="number"
                 variant="outlined"
-                className="lg:min-w-[500px] w-[100%]"
+                className="lg:min-w-[500px] w-[100%] md:w-[auto]"
                 onChange={(e: any) => {
                   const member = dataMember;
                   const ageValue = e.target.value;
@@ -107,7 +92,7 @@ const NewMember: NextPage = () => {
               />
             </div>
 
-            <FormControl className="lg:min-w-[500px] mt-[20px] md:mt-0">
+            <FormControl className="lg:min-w-[500px] mt-[20px] ">
               <InputLabel id="demo-simple-select-label">Status</InputLabel>
               <Select
                 variant="outlined"
