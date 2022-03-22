@@ -17,7 +17,7 @@ const NewArticle: NextPage = () => {
   const [openAlert, setOpenAlert] = useState<boolean>(false);
   const [alertMessage, setAlertMessage] = useState<string>("");
   const [uploadLoading, setUploadLoading] = useState<boolean>(false);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState<string>(false);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
   const router = useRouter();
   const articleRestService = new ArticleRestService();
   const { dispatch } = useLocalData();
