@@ -17,6 +17,8 @@ import { Delete, Edit } from "@mui/icons-material";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 import { alpha, Box, Button } from "@mui/material";
+import { DRIVE_URL } from "../../../../config/environtment";
+import Image from "next/image";
 
 interface IPostListProps {
   setDeleteId: (id: any) => void;
@@ -261,7 +263,11 @@ export default function PostListComponent(props: IPostListProps) {
                           {row.title}
                         </TableCell>
                         <TableCell align="left">{row.content}</TableCell>
-                        <TableCell align="left">{row.imageUrl}</TableCell>
+                        <TableCell align="left">
+                          <div className="relative max-w-[30px]">
+                            <Image src={DRIVE_URL + row.imageId} layout="responsive" width="20px" height="20px" />
+                          </div>
+                        </TableCell>
                         {/* <TableCell align="left">{row.address}</TableCell> */}
                         <TableCell align="left">
                           <div className="flex">

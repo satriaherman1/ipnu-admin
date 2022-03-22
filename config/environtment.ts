@@ -1,3 +1,3 @@
-const baseUrl = "http://localhost:3030/v1";
-
-export { baseUrl };
+const baseUrl = "https://docs-management-api.vercel.app/v1";
+const DRIVE_URL = "https://drive.google.com/uc?id=";
+export { baseUrl, DRIVE_URL };

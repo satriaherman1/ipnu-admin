@@ -18,7 +18,7 @@ declare interface Data {
 declare interface IArticleData {
   title: string;
   content: string;
-  imageUrl: string;
+  imageId: string;
   author: string;
 }
 

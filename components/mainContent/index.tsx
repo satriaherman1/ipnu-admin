@@ -22,14 +22,10 @@ export default function MainContent(props: ImainContentProps) {
   }
   useEffect(() => {}, []);
   return (
-    <div className="py-[30px] px-[20px] lg:px-[40px] w-[100%] mt-[60px] lg:mt-0">
-      <Head>
-        <meta name="google-signin-client_id" content="29223967428-9m3uh7cao43bgqmv1qsfhipakpike32n.apps.googleusercontent.com"></meta>
-      </Head>
-      <Script src="https://apis.google.com/js/platform.js" async defer></Script>
+    <div className="py-[30px] px-[20px] h-[100%] overflow-y-scroll max-h-[700px] lg:px-[40px] w-[100%] mt-[60px] lg:mt-0">
       <div className="flex justify-between w-full items-center mb-[30px]">
         <PageBreadCrumbs {...store.breadCrumbs} />
-        <div className="flex  items-center">
+        <div className="hidden lg:flex items-center">
           <IconButton className="ml-[10px] ">
             <Notifications />
           </IconButton>
@@ -41,7 +37,7 @@ export default function MainContent(props: ImainContentProps) {
           </IconButton>
         </div>
       </div>
-      <div className="g-signin2" data-onsuccess="onSignIn"></div>
+
       {children}
     </div>
   );
