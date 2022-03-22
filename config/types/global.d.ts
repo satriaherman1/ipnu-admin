@@ -20,6 +20,7 @@ declare interface IArticleData {
   content: string;
   imageId: string;
   author: string;
+  _id?: string;
 }
 
 declare interface ILocalData {
