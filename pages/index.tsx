@@ -1,15 +1,14 @@
-import { AccountCircle, Group, InsertPhoto, Notifications, Search, SpeedOutlined } from "@mui/icons-material";
+import { Group } from "@mui/icons-material";
 import type { NextPage } from "next";
 import * as React from "react";
 
 import MainContent from "../components/mainContent";
-import Sidebar from "../components/sidebar";
 import SimpleCard from "../components/simple-card";
 import Navigation from "../components/navigation";
-import { Box, IconButton, TextField } from "@mui/material";
-import PageBreadCrumbs from "../components/pageBreadCrumbs";
+import useRouteGuard from "../core/hooks/useRouteGuard";
 
 const Home: NextPage = () => {
+  useRouteGuard();
   return (
     <div className="flex">
       <Navigation />

@@ -1,0 +1,4 @@
+.login {
+  background-color: #eaeaea;
+  @apply flex w-full h-[100vh] justify-center items-center;
+}

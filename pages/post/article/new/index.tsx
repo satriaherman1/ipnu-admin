@@ -10,6 +10,7 @@ import useLocalData from "../../../../core/hooks/useLocalData";
 import { styled } from "@mui/material/styles";
 import Image from "next/image";
 import { DRIVE_URL } from "../../../../config/environtment";
+import useRouteGuard from "../../../../core/hooks/useRouteGuard";
 
 const NewArticle: NextPage = () => {
   const [dataArticle, setDataArticle] = useState<IArticleData>({} as IArticleData);
@@ -69,9 +70,7 @@ const NewArticle: NextPage = () => {
     setImagePreviewUrl(DRIVE_URL + id);
   };
 
-  // const generateImagePreview = (e) => {
-
-  // }
+  useRouteGuard();
 
   return (
     <div className="flex">
@@ -88,7 +87,7 @@ const NewArticle: NextPage = () => {
               <>
                 {imagePreviewUrl ? (
                   <div className="w-[100%] h-[80%] relative max-w-[500px] max-h-[500px]">
-                    <Image className="max-h-[300px]" layout="responsive" width="100px" height="50px" src={imagePreviewUrl} alt="preview" />
+                    <img className="max-h-[300px] mx-auto" width="100px" height="50px" src={imagePreviewUrl} alt="preview" />
                   </div>
                 ) : (
                   <>

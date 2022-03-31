@@ -7,6 +7,7 @@ import MainContent from "../../../components/mainContent";
 import Navigation from "../../../components/navigation";
 import PostListComponent from "../../../components/pages/post/list";
 import useLocalData from "../../../core/hooks/useLocalData";
+import useRouteGuard from "../../../core/hooks/useRouteGuard";
 import { ArticleRestService } from "../../../service/rest/article-rest.service";
 
 const Article: NextPage = () => {
@@ -40,6 +41,8 @@ const Article: NextPage = () => {
     });
     getArticlesData();
   }, []);
+
+  useRouteGuard();
 
   return (
     <div className="flex">

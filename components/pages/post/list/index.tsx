@@ -265,7 +265,7 @@ export default function PostListComponent(props: IPostListProps) {
                         <TableCell align="left">{row.content}</TableCell>
                         <TableCell align="left">
                           <div className="relative max-w-[30px]">
-                            <Image src={DRIVE_URL + row.imageId} layout="responsive" width="20px" height="20px" />
+                            <img src={DRIVE_URL + row.imageId} width="20px" height="20px" />
                           </div>
                         </TableCell>
                         {/* <TableCell align="left">{row.address}</TableCell> */}
