@@ -1,11 +1,9 @@
-import { AccountCircle, Notifications, Search } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
-import Head from "next/head";
-import Script from "next/script";
-import { useEffect } from "react";
+import { AccountCircle, Logout, Notifications, Search } from "@mui/icons-material";
+import { IconButton, List, ListItemButton, ListItemIcon, ListItemText, Popover, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import useLocalData from "../../core/hooks/useLocalData";
 import PageBreadCrumbs from "../pageBreadCrumbs";
-
+import { AuthRestService } from "../../service/rest/auth-rest.service";
 interface ImainContentProps {
   children: any;
 }
@@ -13,14 +11,19 @@ interface ImainContentProps {
 export default function MainContent(props: ImainContentProps) {
   const { store } = useLocalData();
   const { children } = props;
-  function onSignIn(googleUser: any) {
-    var profile = googleUser.getBasicProfile();
-    console.log("ID: " + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log("Name: " + profile.getName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail()); // This is null if the 'email' scope is not present.
-  }
-  useEffect(() => {}, []);
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const openUserPopover = Boolean(anchorEl);
+  const id = openUserPopover ? "user-popover" : undefined;
+  const authRestService = new AuthRestService();
+
+  const handleOpenUserPopover = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseUserPopover = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div className="py-[30px] px-[20px] h-[100%] overflow-y-scroll max-h-[700px] lg:px-[40px] w-[100%] mt-[60px] lg:mt-0">
       <div className="flex justify-between w-full items-center mb-[30px]">
@@ -32,9 +35,26 @@ export default function MainContent(props: ImainContentProps) {
           <IconButton className="ml-[10px] ">
             <Search />
           </IconButton>
-          <IconButton className="ml-[10px] ">
+          <IconButton className="ml-[10px]" aria-describedby={id} onClick={handleOpenUserPopover}>
             <AccountCircle />
           </IconButton>
+          <Popover
+            id={id}
+            open={openUserPopover}
+            anchorEl={anchorEl}
+            onClose={handleCloseUserPopover}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+          >
+            <ListItemButton onClick={() => authRestService.logout()}>
+              <ListItemIcon>
+                <Logout />
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
+            </ListItemButton>
+          </Popover>
         </div>
       </div>
 

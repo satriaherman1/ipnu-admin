@@ -66,7 +66,7 @@ const Member: NextPage = () => {
           </Backdrop>
         ) : (
           <>
-            <div style={{ height: 600, width: "100%" }}>
+            <div className="h-[fit-content] max-h-[600px] w-full">
               <MemberListComponent setOpenConfirmDelete={(confirm) => setOpenConfirmDelete(confirm)} members={membersIpnu} setDeleteId={(id) => setDeleteId(id)} />
               <Link href="/member/new" passHref>
                 <Box sx={{ bgcolor: "success.main" }} className="rounded w-[fit-content]">

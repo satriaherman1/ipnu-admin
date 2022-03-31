@@ -12,7 +12,7 @@ export default function useRouteGuard() {
   function authCheck() {
     const currentUser: any = localStorage.getItem("currentUser");
     const userData = JSON.parse(currentUser);
-    const login = userData.login;
+    const login = userData?.login;
 
     // redirect to login page if accessing a private page and not logged in
     const redirectPath = "/login";
