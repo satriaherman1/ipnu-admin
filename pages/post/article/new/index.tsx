@@ -138,7 +138,7 @@ const NewArticle: NextPage = () => {
               />
             </section>
           </div>
-          <div className="flex flex-col md:flex-row mt-[30px] lg:min-w-[450px] max-w-[48%]">
+          <div className="flex flex-col md:flex-row mt-[30px] lg:min-w-[450px] lg:max-w-[48%]">
             <TextField
               label="Content"
               variant="outlined"
