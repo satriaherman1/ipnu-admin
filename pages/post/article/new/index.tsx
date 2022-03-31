@@ -105,38 +105,48 @@ const NewArticle: NextPage = () => {
               </>
             )}
           </div>
-          <div className="flex justify-between flex-col md:flex-row mt-[30px]">
-            <TextField
-              label="Judul"
-              variant="outlined"
-              className="lg:min-w-[450px]"
-              onChange={(e) => {
-                const article = dataArticle;
-                article.title = e.target.value;
-                setDataArticle(dataArticle);
-              }}
-              value={dataArticle.title}
-            />
+          <div className="flex justify-between flex-col md:flex-row mt-[30px] ">
+            <section className="lg:min-w-[450px]">
+              <TextField
+                label="Judul"
+                variant="outlined"
+                style={{
+                  width: "100%",
+                }}
+                onChange={(e) => {
+                  const article = dataArticle;
+                  article.title = e.target.value;
+                  setDataArticle(dataArticle);
+                }}
+                value={dataArticle.title}
+              />
+            </section>
             <br className="md:hidden" />
-            <TextField
-              label="Penulis"
-              variant="outlined"
-              className="lg:min-w-[450px]"
-              onChange={(e) => {
-                const article = dataArticle;
-                article.author = e.target.value;
-                setDataArticle(dataArticle);
-              }}
-              value={dataArticle.author}
-            />
+            <section className="lg:min-w-[450px]">
+              <TextField
+                label="Penulis"
+                variant="outlined"
+                style={{
+                  width: "100%",
+                }}
+                onChange={(e) => {
+                  const article = dataArticle;
+                  article.author = e.target.value;
+                  setDataArticle(dataArticle);
+                }}
+                value={dataArticle.author}
+              />
+            </section>
           </div>
-          <div className="flex flex-col md:flex-row mt-[30px]">
+          <div className="flex flex-col md:flex-row mt-[30px] lg:min-w-[450px]">
             <TextField
               label="Content"
               variant="outlined"
               multiline
               rows={5}
-              className="lg:min-w-[450px]"
+              width={{
+                width: "100%",
+              }}
               onChange={(e) => {
                 const article = dataArticle;
                 article.content = e.target.value;
