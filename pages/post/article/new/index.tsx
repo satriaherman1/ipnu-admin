@@ -106,7 +106,7 @@ const NewArticle: NextPage = () => {
             )}
           </div>
           <div className="flex justify-between flex-col md:flex-row mt-[30px] ">
-            <section className="lg:min-w-[450px]">
+            <section className="lg:w-[48%]">
               <TextField
                 label="Judul"
                 variant="outlined"
@@ -122,7 +122,7 @@ const NewArticle: NextPage = () => {
               />
             </section>
             <br className="md:hidden" />
-            <section className="lg:min-w-[450px]">
+            <section className="lg:w-[48%]">
               <TextField
                 label="Penulis"
                 variant="outlined"
@@ -138,13 +138,13 @@ const NewArticle: NextPage = () => {
               />
             </section>
           </div>
-          <div className="flex flex-col md:flex-row mt-[30px] lg:min-w-[450px]">
+          <div className="flex flex-col md:flex-row mt-[30px] lg:min-w-[450px] max-w-[48%]">
             <TextField
               label="Content"
               variant="outlined"
               multiline
               rows={5}
-              width={{
+              style={{
                 width: "100%",
               }}
               onChange={(e) => {
