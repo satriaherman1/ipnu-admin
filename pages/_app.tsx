@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import "../styles/index.css";
 import "tailwindcss/tailwind.css";
+import "react-quill/dist/quill.snow.css";
 import type { AppProps } from "next/app";
 import { Provider } from "../core/context";
 import { useMemo, useReducer } from "react";

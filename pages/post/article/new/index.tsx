@@ -8,9 +8,9 @@ import { useRouter } from "next/router";
 import { ArticleRestService } from "../../../../service/rest/article-rest.service";
 import useLocalData from "../../../../core/hooks/useLocalData";
 import { styled } from "@mui/material/styles";
-import Image from "next/image";
 import { DRIVE_URL } from "../../../../config/environtment";
 import useRouteGuard from "../../../../core/hooks/useRouteGuard";
+import TextEditor from "../../../../components/textEditor";
 
 const NewArticle: NextPage = () => {
   const [dataArticle, setDataArticle] = useState<IArticleData>({} as IArticleData);
@@ -26,7 +26,7 @@ const NewArticle: NextPage = () => {
   const submitNewArticle = async () => {
     setSubmitLoading(true);
     try {
-      const submitted = await articleRestService.createArticle(dataArticle);
+      await articleRestService.createArticle(dataArticle);
       setOpenAlert(true);
       setAlertMessage("Berhasil Menambahkan Artikel");
       setTimeout(() => router.push("/post/article"), 2000);
@@ -110,6 +110,7 @@ const NewArticle: NextPage = () => {
               <TextField
                 label="Judul"
                 variant="outlined"
+                defaultValue={dataArticle.title ? dataArticle.title : ""}
                 style={{
                   width: "100%",
                 }}
@@ -126,6 +127,7 @@ const NewArticle: NextPage = () => {
               <TextField
                 label="Penulis"
                 variant="outlined"
+                defaultValue={dataArticle.author ? dataArticle.author : ""}
                 style={{
                   width: "100%",
                 }}
@@ -139,20 +141,14 @@ const NewArticle: NextPage = () => {
             </section>
           </div>
           <div className="flex flex-col md:flex-row mt-[30px] lg:min-w-[450px] lg:max-w-[48%]">
-            <TextField
-              label="Content"
-              variant="outlined"
-              multiline
-              rows={5}
-              style={{
-                width: "100%",
-              }}
+            <TextEditor
+              value={dataArticle.content}
+              defaultValue={dataArticle.content ? dataArticle.author : ""}
               onChange={(e) => {
                 const article = dataArticle;
-                article.content = e.target.value;
+                article.content = e;
                 setDataArticle(dataArticle);
               }}
-              value={dataArticle.content}
             />
           </div>
           <br />

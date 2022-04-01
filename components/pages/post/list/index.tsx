@@ -18,7 +18,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 import { alpha, Box, Button } from "@mui/material";
 import { DRIVE_URL } from "../../../../config/environtment";
-import Image from "next/image";
+import FormatService from "../../../../service/format/format.service";
 
 interface IPostListProps {
   setDeleteId: (id: any) => void;
@@ -182,6 +182,7 @@ export default function PostListComponent(props: IPostListProps) {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const formatService = new FormatService();
 
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof IArticleData) => {
     const isAsc = orderBy === property && order === "asc";
@@ -262,7 +263,7 @@ export default function PostListComponent(props: IPostListProps) {
                         <TableCell component="th" id={labelId} scope="row" padding="none">
                           {row.title}
                         </TableCell>
-                        <TableCell align="left">{row.content}</TableCell>
+                        <TableCell align="left" dangerouslySetInnerHTML={{ __html: formatService.truncate(row.content, 50) }}></TableCell>
                         <TableCell align="left">
                           <div className="relative max-w-[30px]">
                             <img src={DRIVE_URL + row.imageId} width="20px" height="20px" />

@@ -1,5 +1,5 @@
 class FormatService {
-  truncate(value: string, len: number) {
+  truncate(value: any, len: number) {
     if (value.length <= len) {
       return value;
     }
