@@ -31,7 +31,7 @@ export class ArticleRestService {
   }
   async deleteArticleById(id: any) {
     try {
-      return await this.http.delete(`/post/article${id}`);
+      return await this.http.delete(`/post/article/${id}`);
     } catch (err) {
       console.log(err);
     }
