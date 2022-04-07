@@ -1,5 +1,5 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { AssignmentInd, Feed, Group, InsertPhoto, SpeedOutlined, VerifiedUserOutlined } from "@mui/icons-material";
+import { AssignmentInd, Feed, Group, InsertPhoto, Mail, SpeedOutlined, VerifiedUserOutlined } from "@mui/icons-material";
 import { Box, Divider, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,11 +15,6 @@ export default function Sidebar(props: ISidebarProps) {
   return (
     <ThemeProvider
       theme={createTheme({
-        // components: {
-        //   MuiListItemButton: {
-
-        //   },
-        // },
         palette: {
           mode: "dark",
           primary: { main: "#018559" },
@@ -84,6 +79,17 @@ export default function Sidebar(props: ISidebarProps) {
                 <InsertPhoto />
               </ListItemIcon>
               <ListItemText primary="Artikel" className="text-white" />
+            </ListItemButton>
+          </Link>
+        </List>
+        <p className="text-[600] text-[#d9d9d9]">Dokumen</p>
+        <List>
+          <Link href="/docs/archive">
+            <ListItemButton className={`${active === "archive" && "active"} my-[5px]`}>
+              <ListItemIcon className={`${active === "archive" && "text-[#333]"}`}>
+                <Mail />
+              </ListItemIcon>
+              <ListItemText primary="Arsip Surat" className="text-white" />
             </ListItemButton>
           </Link>
         </List>

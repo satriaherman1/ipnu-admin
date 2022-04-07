@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import MainContent from "../../../components/mainContent";
 import Navigation from "../../../components/navigation";
+import ConfirmDeleteComponent from "../../../components/pages/member/confirmDelete";
 import PostListComponent from "../../../components/pages/post/list";
 import useLocalData from "../../../core/hooks/useLocalData";
 import useRouteGuard from "../../../core/hooks/useRouteGuard";
@@ -18,18 +19,24 @@ const Article: NextPage = () => {
   const [deleteId, setDeleteId] = useState<string>("");
 
   const articleRestService = new ArticleRestService();
-  const deleteMemberById = async () => {
+  const deleteArticleById = () => {
     setIsLoading(true);
-    await articleRestService.deleteArticleById(deleteId);
-    setIsLoading(false);
-    await getArticlesData();
+    articleRestService.deleteArticleById(deleteId).then((res) => {
+      if (res?.status === 200) {
+        setIsLoading(false);
+      }
+    });
+
+    getArticlesData();
   };
+
   const getArticlesData = async () => {
     setIsLoading(true);
     const dataArticles = await articleRestService.getArticles();
     setArticles(dataArticles?.data.data);
     setIsLoading(false);
   };
+
   useEffect(() => {
     const breadCrumbs = {
       previousPage: ["Dashboard", "Post"],
@@ -66,6 +73,7 @@ const Article: NextPage = () => {
             </Link>
           </>
         )}
+        <ConfirmDeleteComponent action={deleteArticleById} open={openConfirmDelete} onClose={() => setOpenConfirmDelete(false)} />
       </MainContent>
     </div>
   );

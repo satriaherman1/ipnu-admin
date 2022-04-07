@@ -7,7 +7,7 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { AssignmentInd, Feed, Group, InsertPhoto, Notifications, Search, SpeedOutlined } from "@mui/icons-material";
+import { AssignmentInd, Feed, Group, InsertPhoto, Mail, Notifications, Search, SpeedOutlined } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AppBar, IconButton, SpeedDial, Switch, Toolbar, Typography, useMediaQuery } from "@mui/material";
@@ -48,7 +48,6 @@ export default function Navigation() {
           </Box>
           <Divider />
           <br />
-          {/* <p className="text-[600] text-[#5e6361] ml-[15px] mb-[5px]">Main</p> */}
 
           <Link href="/">
             <ListItem button>
@@ -67,14 +66,14 @@ export default function Navigation() {
               <ListItemText primary="Daftar Anggota" />
             </ListItem>
           </Link>
-          <Link href="/member">
+          {/* <Link href="/member">
             <ListItem button>
               <ListItemIcon>
                 <AssignmentInd />
               </ListItemIcon>
               <ListItemText primary="Roles" />
             </ListItem>
-          </Link>
+          </Link> */}
           <Link href="/member">
             <ListItem button>
               <ListItemIcon>
@@ -89,6 +88,14 @@ export default function Navigation() {
                 <InsertPhoto />
               </ListItemIcon>
               <ListItemText primary="Artikel" />
+            </ListItem>
+          </Link>
+          <Link href="/member">
+            <ListItem button>
+              <ListItemIcon>
+                <Mail />
+              </ListItemIcon>
+              <ListItemText primary="Arsip Surat" />
             </ListItem>
           </Link>
         </List>

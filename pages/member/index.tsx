@@ -20,7 +20,6 @@ const Member: NextPage = () => {
   const [deleteId, setDeleteId] = useState<any>();
   const { dispatch } = useLocalData();
   const [openConfirmDelete, setOpenConfirmDelete] = useState<boolean>(false);
-  function EnhancedTable() {}
 
   const getAllMembers = async () => {
     setIsLoading(true);
