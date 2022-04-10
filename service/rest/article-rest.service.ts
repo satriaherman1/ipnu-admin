@@ -4,6 +4,7 @@ import { baseUrl } from "../../config/environtment";
 export class ArticleRestService {
   private http: AxiosInstance;
   private httpUpload: AxiosInstance;
+
   constructor() {
     this.http = axios.create({
       baseURL: baseUrl,
@@ -16,11 +17,10 @@ export class ArticleRestService {
     });
   }
   async getArticles() {
-    try {
-      return await this.http.get(`/post/article`);
-    } catch (err) {
-      console.log(err);
-    }
+    return await this.http.get(`/post/article`);
+  }
+  async getArticleById(id: any) {
+    return await this.http.get(`/post/article/${id}`);
   }
   async createArticle(params: IArticleData) {
     try {
@@ -35,6 +35,9 @@ export class ArticleRestService {
     } catch (err) {
       console.log(err);
     }
+  }
+  async updateArticle(id: any, params: any) {
+    return await this.http.put(`/post/article/${id}`, params);
   }
   async getMemberByKey(params: any) {
     try {

@@ -46,6 +46,7 @@ const Article: NextPage = () => {
       type: "CHANGE_BREADCRUMBS",
       breadCrumbs: breadCrumbs,
     });
+
     getArticlesData();
   }, []);
 

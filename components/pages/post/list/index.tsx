@@ -19,6 +19,7 @@ import { visuallyHidden } from "@mui/utils";
 import { alpha, Box, Button } from "@mui/material";
 import { DRIVE_URL } from "../../../../config/environtment";
 import FormatService from "../../../../service/format/format.service";
+import Link from "next/link";
 
 interface IPostListProps {
   setDeleteId: (id: any) => void;
@@ -272,11 +273,13 @@ export default function PostListComponent(props: IPostListProps) {
                         {/* <TableCell align="left">{row.address}</TableCell> */}
                         <TableCell align="left">
                           <div className="flex">
-                            <Box sx={{ bgcolor: "primary.main" }} className="rounded-lg">
-                              <Button variant="contained" color="primary" className="max-w-[10px] rounded-lg">
-                                <Edit />
-                              </Button>
-                            </Box>
+                            <Link href={`article/${row._id}`}>
+                              <Box sx={{ bgcolor: "primary.main" }} className="rounded-lg">
+                                <Button variant="contained" color="primary" className="max-w-[10px] rounded-lg">
+                                  <Edit />
+                                </Button>
+                              </Box>
+                            </Link>
                             <Box sx={{ bgcolor: "error.main" }} className="rounded-lg ml-[20px]">
                               <Button
                                 variant="contained"
