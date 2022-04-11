@@ -56,7 +56,7 @@ export default function PostForm(props: IPostFormProps): React.ReactElement {
     formik.setFieldValue("title", dataArticle.title);
     formik.setFieldValue("content", dataArticle.content);
     formik.setFieldValue("imageId", dataArticle.imageId);
-    console.log(formik.values.imageId);
+    
     if (formik.values.imageId !== "" && formik.values.imageId !== undefined) {
       const previewUrl = DRIVE_URL + formik.values.imageId;
       setImagePreviewUrl(previewUrl);
