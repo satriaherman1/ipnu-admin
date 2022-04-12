@@ -5,12 +5,8 @@ import { baseUrl } from "../../config/environtment";
 export class AuthRestService {
   private router = useRouter();
 
-  async login(params: any) {
-    try {
-      return await axios.post(`${baseUrl}/auth/signin`, params);
-    } catch (err) {
-      console.log(err);
-    }
+  login(params: any) {
+    return axios.post(`${baseUrl}/auth/signin`, params);
   }
 
   logout() {

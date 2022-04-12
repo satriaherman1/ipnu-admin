@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { baseUrl } from "../../config/environtment";
-
+import { headers } from "./base-request.service";
 export class ArticleRestService {
   private http: AxiosInstance;
   private httpUpload: AxiosInstance;
@@ -8,53 +8,45 @@ export class ArticleRestService {
   constructor() {
     this.http = axios.create({
       baseURL: baseUrl,
+      headers: {
+        ...headers,
+      },
     });
     this.httpUpload = axios.create({
       baseURL: baseUrl,
       headers: {
         "Content-Type": "multipart/form-data",
+        ...headers,
       },
     });
   }
-  async getArticles() {
-    return await this.http.get(`/post/article`);
+  getArticles() {
+    return this.http.get(`/post/article`);
   }
-  async getArticleById(id: any) {
-    return await this.http.get(`/post/article/${id}`);
+  getArticleById(id: any) {
+    return this.http.get(`/post/article/${id}`);
   }
-  async createArticle(params: IArticleData) {
-    try {
-      return await this.http.post(`/post/article`, params);
-    } catch (err) {
-      console.log(err);
-    }
+  createArticle(params: IArticleData) {
+    return this.http.post(`/post/article`, params);
   }
-  async deleteArticleById(id: any) {
-    try {
-      return await this.http.delete(`/post/article/${id}`);
-    } catch (err) {
-      console.log(err);
-    }
+  deleteArticleById(id: any) {
+    return this.http.delete(`/post/article/${id}`);
   }
-  async updateArticle(id: any, params: any) {
-    return await this.http.put(`/post/article/${id}`, params);
+  updateArticle(id: any, params: any) {
+    return this.http.put(`/post/article/${id}`, params);
   }
-  async getMemberByKey(params: any) {
-    try {
-      return await this.http.get(`/post/article/key`, {
-        params: params,
-      });
-    } catch (err) {
-      console.log(err);
-    }
+  getMemberByKey(params: any) {
+    return this.http.get(`/post/article/key`, {
+      params: params,
+    });
   }
 
-  async uploadArticleImage(file: any) {
+  uploadArticleImage(file: any) {
     let formData = new FormData();
     const type = file[0].type;
     const blob = new Blob(file, { type: type });
 
     formData.append("file", blob);
-    return await this.httpUpload.post("/post/article/upload", formData);
+    return this.httpUpload.post("/post/article/upload", formData);
   }
 }
