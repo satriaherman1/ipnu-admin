@@ -11,13 +11,13 @@ interface IPostFormProps {
   dataArticle: IArticleData;
   setDataArticle: Function;
   uploadLoading: boolean;
-  imagePreviewUrl: string;
+  imagePreviewUrl: string | undefined;
   closeAlert: () => any;
   submitAction: (val?: any) => any;
   submitLoading: boolean;
   openAlert: boolean;
   alertMessage: string;
-  setImagePreviewUrl?: Function;
+  setImagePreviewUrl?: any;
   categories: IArticleCategoriesData[];
 }
 
@@ -61,8 +61,10 @@ export default function PostForm(props: IPostFormProps): React.ReactElement {
     formik.setFieldValue("imageId", dataArticle.imageId);
 
     if (formik.values.imageId !== "" && formik.values.imageId !== undefined) {
-      const previewUrl = DRIVE_URL + formik.values.imageId || "";
-      setImagePreviewUrl(previewUrl);
+      const previewUrl: any = DRIVE_URL + formik?.values?.imageId || "";
+      if (previewUrl) {
+        setImagePreviewUrl(previewUrl || "");
+      }
     }
   }, [dataArticle]);
 

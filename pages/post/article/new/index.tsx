@@ -13,7 +13,7 @@ const NewArticle: NextPage = () => {
   const [dataArticle, setDataArticle] = useState<IArticleData>({} as IArticleData);
   const [alertMessage, setAlertMessage] = useState<string>("");
   const [uploadLoading, setUploadLoading] = useState<boolean>(false);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
+  const [imagePreviewUrl, setImagePreviewUrl] = useState<string>();
   const [submitLoading, setSubmitLoading] = useState<boolean>(false);
   const [openAlert, setOpenAlert] = useState<boolean>(false);
   const [categories, setCategories] = useState<IArticleCategoriesData[]>([]);
