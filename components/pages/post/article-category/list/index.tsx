@@ -58,7 +58,7 @@ function stableSort<T>(array: readonly any[], comparator: (a: T, b: T) => number
 
 const headCells = [
   {
-    id: "title",
+    id: "name",
     numeric: false,
     disablePadding: true,
     label: "Nama Kategori",
@@ -74,7 +74,7 @@ const headCells = [
 
 interface EnhancedTableProps {
   numSelected: number;
-  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof IArticleData) => void;
+  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof IArticleCategoriesData) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   order: Order;
   orderBy: string;
@@ -225,9 +225,6 @@ export default function CategoriesListComponent(props: IPostListProps) {
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={dense ? "small" : "medium"}>
             <EnhancedTableHead numSelected={selected.length} order={order} orderBy={orderBy} onSelectAllClick={handleSelectAllClick} onRequestSort={handleRequestSort} rowCount={posts?.length} />
             <TableBody>
-              {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-               */}
-              {/* {posts?.slice().sort(getComparator(order, orderBy))} */}
               {posts !== undefined &&
                 stableSort(posts, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
