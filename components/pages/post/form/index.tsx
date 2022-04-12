@@ -1,4 +1,5 @@
-import { Alert, Backdrop, Box, Button, CircularProgress, FormControl, InputLabel, MenuItem, Select, Skeleton, Snackbar, styled, TextField } from "@mui/material";
+import { CloseOutlined } from "@mui/icons-material";
+import { Alert, Backdrop, Box, Button, CircularProgress, FormControl, IconButton, InputLabel, MenuItem, Select, Skeleton, Snackbar, styled, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
@@ -38,7 +39,7 @@ export default function PostForm(props: IPostFormProps): React.ReactElement {
     content: dataArticle.content,
     title: dataArticle.title,
     imageId: dataArticle.imageId,
-    category: dataArticle.category,
+    category: dataArticle.category !== undefined ? dataArticle.category : [],
   };
 
   const formik = useFormik({
@@ -48,8 +49,10 @@ export default function PostForm(props: IPostFormProps): React.ReactElement {
       dataArticle.author = values.author;
       dataArticle.content = values.content;
       dataArticle.title = values.title;
-      dataArticle.category = values.category;
+      const category: any = values.category?.map((c) => c._id);
+      dataArticle.category = category;
       setDataArticle(dataArticle);
+      console.log(dataArticle);
       setTimeout(() => submitAction(), 200);
     },
   });
@@ -133,15 +136,48 @@ export default function PostForm(props: IPostFormProps): React.ReactElement {
               <section className="lg:w-[48%]">
                 <FormControl fullWidth>
                   <InputLabel id="category-label">Kategori</InputLabel>
-                  <Select labelId="category-label" id="category" name="category" value={formik.values.category} label="Kategori" onChange={formik.handleChange}>
+                  <Select labelId="category-label" id="category" name="category" label="Kategori">
                     {categories &&
                       categories.map((c) => (
-                        <MenuItem key={c._id} value={c._id}>
+                        <MenuItem
+                          key={c._id}
+                          value={c._id}
+                          onClick={() => {
+                            const category: IArticleCategoriesData[] = formik.values.category || [];
+                            formik.setFieldValue("category", [
+                              ...category,
+                              {
+                                name: c.name,
+                                _id: c._id,
+                              },
+                            ]);
+                          }}
+                        >
                           {c.name}
                         </MenuItem>
                       ))}
                   </Select>
                 </FormControl>
+
+                <div className="flex w-full flex-wrap mt-3">
+                  {formik.values.category?.map((c, key) => (
+                    <div className="category-list flex items-center mr-2 text-white py-1 px-2 h-[fit-content] text-[12px] rounded-md bg-[#00801c]" key={key}>
+                      {c.name}{" "}
+                      <IconButton
+                        className="p-[0] ml-2 h-[fit-content]"
+                        onClick={() => {
+                          const val = formik.values.category;
+                          const index = val?.map((category) => category.name).indexOf(c.name);
+                          const newVal = val?.splice(0, index);
+
+                          formik.setFieldValue("category", newVal);
+                        }}
+                      >
+                        <CloseOutlined className="text-[12px] text-white" />
+                      </IconButton>
+                    </div>
+                  ))}
+                </div>
               </section>
             </div>
             <div className="flex flex-col md:flex-row mt-[30px] lg:min-w-[450px] lg:max-w-[48%]">
