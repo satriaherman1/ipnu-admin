@@ -1,17 +1,13 @@
-import { Box, TextField, Snackbar, Alert, Input, Button, Skeleton } from "@mui/material";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
-import MainContent from "../../../../components/mainContent";
 import Navigation from "../../../../components/navigation";
-import LoadingButton from "@mui/lab/LoadingButton";
 import { useRouter } from "next/router";
 import { ArticleRestService } from "../../../../service/rest/article-rest.service";
 import useLocalData from "../../../../core/hooks/useLocalData";
-import { styled } from "@mui/material/styles";
 import { DRIVE_URL } from "../../../../config/environtment";
 import useRouteGuard from "../../../../core/hooks/useRouteGuard";
-import TextEditor from "../../../../components/textEditor";
 import PostForm from "../../../../components/pages/post/form";
+import { ArticleCategoryRestService } from "../../../../service/rest/article-categories-rest.service";
 
 const NewArticle: NextPage = () => {
   const [dataArticle, setDataArticle] = useState<IArticleData>({} as IArticleData);
@@ -20,6 +16,8 @@ const NewArticle: NextPage = () => {
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
   const [submitLoading, setSubmitLoading] = useState<boolean>(false);
   const [openAlert, setOpenAlert] = useState<boolean>(false);
+  const [categories, setCategories] = useState<IArticleCategoriesData[]>([]);
+  const categoriesRest = new ArticleCategoryRestService();
   const router = useRouter();
   const articleRestService = new ArticleRestService();
   const { dispatch } = useLocalData();
@@ -43,6 +41,13 @@ const NewArticle: NextPage = () => {
     dispatch({
       type: "CHANGE_BREADCRUMBS",
       breadCrumbs: breadCrumbs,
+    });
+
+    categoriesRest.getCategories().then((res) => {
+      if (res.status === 200) {
+        const data = res.data.data;
+        setCategories(data);
+      }
     });
   }, []);
 
@@ -84,6 +89,7 @@ const NewArticle: NextPage = () => {
         uploadImageArticle={uploadImageArticle}
         dataArticle={dataArticle}
         setDataArticle={setDataArticle}
+        categories={categories}
       />
     </div>
   );

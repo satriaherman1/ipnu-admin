@@ -1,6 +1,6 @@
-import { Alert, Backdrop, Box, Button, CircularProgress, Input, Skeleton, Snackbar, styled, TextField } from "@mui/material";
+import { Alert, Backdrop, Box, Button, CircularProgress, FormControl, InputLabel, MenuItem, Select, Skeleton, Snackbar, styled, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as yup from "yup";
 import { DRIVE_URL } from "../../../../config/environtment";
 import MainContent from "../../../mainContent";
@@ -18,10 +18,11 @@ interface IPostFormProps {
   openAlert: boolean;
   alertMessage: string;
   setImagePreviewUrl?: Function;
+  categories: IArticleCategoriesData[];
 }
 
 export default function PostForm(props: IPostFormProps): React.ReactElement {
-  const { setImagePreviewUrl, uploadImageArticle, dataArticle, setDataArticle, uploadLoading, imagePreviewUrl, closeAlert, submitAction, submitLoading, openAlert, alertMessage } = props;
+  const { setImagePreviewUrl, uploadImageArticle, dataArticle, setDataArticle, uploadLoading, imagePreviewUrl, closeAlert, submitAction, submitLoading, openAlert, alertMessage, categories } = props;
 
   const Input = styled("input")({
     display: "none",
@@ -37,6 +38,7 @@ export default function PostForm(props: IPostFormProps): React.ReactElement {
     content: dataArticle.content,
     title: dataArticle.title,
     imageId: dataArticle.imageId,
+    category: dataArticle.category,
   };
 
   const formik = useFormik({
@@ -46,6 +48,7 @@ export default function PostForm(props: IPostFormProps): React.ReactElement {
       dataArticle.author = values.author;
       dataArticle.content = values.content;
       dataArticle.title = values.title;
+      dataArticle.category = values.category;
       setDataArticle(dataArticle);
       setTimeout(() => submitAction(), 200);
     },
@@ -56,9 +59,9 @@ export default function PostForm(props: IPostFormProps): React.ReactElement {
     formik.setFieldValue("title", dataArticle.title);
     formik.setFieldValue("content", dataArticle.content);
     formik.setFieldValue("imageId", dataArticle.imageId);
-    
+
     if (formik.values.imageId !== "" && formik.values.imageId !== undefined) {
-      const previewUrl = DRIVE_URL + formik.values.imageId;
+      const previewUrl = DRIVE_URL + formik.values.imageId || "";
       setImagePreviewUrl(previewUrl);
     }
   }, [dataArticle]);
@@ -122,6 +125,21 @@ export default function PostForm(props: IPostFormProps): React.ReactElement {
                   value={formik.values.author}
                   onChange={formik.handleChange}
                 />
+              </section>
+            </div>
+            <div className="flex justify-between flex-col md:flex-row mt-[30px] ">
+              <section className="lg:w-[48%]">
+                <FormControl fullWidth>
+                  <InputLabel id="category-label">Kategori</InputLabel>
+                  <Select labelId="category-label" id="category" name="category" value={formik.values.category} label="Kategori" onChange={formik.handleChange}>
+                    {categories &&
+                      categories.map((c) => (
+                        <MenuItem key={c._id} value={c._id}>
+                          {c.name}
+                        </MenuItem>
+                      ))}
+                  </Select>
+                </FormControl>
               </section>
             </div>
             <div className="flex flex-col md:flex-row mt-[30px] lg:min-w-[450px] lg:max-w-[48%]">

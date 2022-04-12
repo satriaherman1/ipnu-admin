@@ -9,7 +9,7 @@ import { ArticleRestService } from "../../../service/rest/article-rest.service";
 import useLocalData from "../../../core/hooks/useLocalData";
 import { DRIVE_URL } from "../../../config/environtment";
 import useRouteGuard from "../../../core/hooks/useRouteGuard";
-import TextEditor from "../../../components/textEditor";
+import { ArticleCategoryRestService } from "../../../service/rest/article-categories-rest.service";
 import PostForm from "../../../components/pages/post/form";
 const initialValue = {
   title: "",
@@ -24,8 +24,10 @@ const UpdateArticle: NextPage = () => {
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
   const [submitLoading, setSubmitLoading] = useState<boolean>(false);
   const [openAlert, setOpenAlert] = useState<boolean>(false);
+  const [categories, setCategories] = useState<IArticleCategoriesData[]>([]);
   const router = useRouter();
   const articleRestService = new ArticleRestService();
+  const categoriesRest = new ArticleCategoryRestService();
   const { dispatch } = useLocalData();
 
   const { id } = router.query;
@@ -64,6 +66,12 @@ const UpdateArticle: NextPage = () => {
 
     if (id) {
       loadArticleById();
+      categoriesRest.getCategories().then((res) => {
+        if (res.status === 200) {
+          const data = res.data.data;
+          setCategories(data);
+        }
+      });
     }
   }, [id]);
 
@@ -107,6 +115,7 @@ const UpdateArticle: NextPage = () => {
           dataArticle={dataArticle}
           setDataArticle={setDataArticle}
           setImagePreviewUrl={setImagePreviewUrl}
+          categories={categories}
         />
       )}
     </div>

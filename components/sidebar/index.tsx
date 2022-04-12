@@ -65,12 +65,12 @@ export default function Sidebar(props: ISidebarProps) {
         </List>
         <p className="text-[600] text-[#d9d9d9]">Postingan</p>
         <List>
-          <Link href="/post">
+          <Link href="/post/article-category">
             <ListItemButton className={`${active === "post" && "active"} my-[5px]`}>
               <ListItemIcon className={`${active === "post" && "text-[#333]"}`}>
                 <Feed />
               </ListItemIcon>
-              <ListItemText primary="Berita Terkini" className="text-white" />
+              <ListItemText primary="Kategori Berita" className="text-white" />
             </ListItemButton>
           </Link>
           <Link href="/post/article">

@@ -74,15 +74,15 @@ export default function Navigation() {
               <ListItemText primary="Roles" />
             </ListItem>
           </Link> */}
-          <Link href="/member">
+          <Link href="/post/article-category">
             <ListItem button>
               <ListItemIcon>
                 <Feed />
               </ListItemIcon>
-              <ListItemText primary="Berita Terkini" />
+              <ListItemText primary="Kategori Artikel" />
             </ListItem>
           </Link>
-          <Link href="/member">
+          <Link href="/post/article">
             <ListItem button>
               <ListItemIcon>
                 <InsertPhoto />

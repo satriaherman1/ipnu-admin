@@ -20,6 +20,11 @@ declare interface IArticleData {
   content: string;
   imageId: string;
   author: string;
+  category?: IArticleCategoriesData[];
+  _id?: string;
+}
+declare interface IArticleCategoriesData {
+  name: string;
   _id?: string;
 }
 
